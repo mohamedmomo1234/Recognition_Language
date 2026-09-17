@@ -12,16 +12,13 @@ df = pd.read_csv("dataset.csv")
 
 df=df.dropna()
 
-# فصل الـ Features عن الـ Labels
 X = df.drop(columns=["label"])
 y = df["label"]
 
-# تقسيم البيانات 80% تدريب و 20% اختبار
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42, stratify=y
 )
 
-# تعريف الموديلات المقترحة
 models = {
     "Random Forest": RandomForestClassifier(n_estimators=100, random_state=42),
     "SVM": SVC(kernel='rbf', C=10),
@@ -67,13 +64,13 @@ for name, model in models.items():
     
     print(classification_report(y_test, y_test_pred))
 
-  # اختيار الأفضل بناءً على دقة الاختبار (Test Accuracy)
+  # select best model using (Test Accuracy)
     if test_acc > best_accuracy:
      best_accuracy = test_acc
      best_model = model
      best_model_name = name
 
-# طباعة جدول المقارنة النهائي
+# final table comparison 
 print("\n" + "=" * 40)
 print("          MODEL COMPARISON TABLE          ")
 print("=" * 40)
@@ -86,7 +83,7 @@ print(
     f" {best_accuracy * 100:.2f}%"
 )
 
-# حفظ أفضل موديل
+# save best model 
 model_filename = "best_sign_model.pkl"
 joblib.dump(best_model, model_filename)
 print(f"[SUCCESS] Best model successfully saved to {model_filename}")
