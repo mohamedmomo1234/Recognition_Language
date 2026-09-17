@@ -289,5 +289,5 @@ Hyperparameter optimization.
 Web application deployment.
 
 👨‍💻 Author
-Mohamed Saidd Abdelaziz
+Mohamed Said Abdelaziz
 Computer Science Student
